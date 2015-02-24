@@ -1,14 +1,10 @@
 language: ruby
 script: rspec spec -b
 rvm:
-  - 1.8.7
-  - 1.9.2
-  - 1.9.3
-  - 2.0.0
-  - rbx-2.2
-  - jruby-18mode
+  - 2.2.x
+  - 2.1.x
+  - 2.0.x
+  - 1.9.x
+  - 1.8.x
   - jruby-19mode
-  - ruby-head
-matrix:
-  allow_failures:
-    - rvm: ruby-head
+  - jruby-18mode
