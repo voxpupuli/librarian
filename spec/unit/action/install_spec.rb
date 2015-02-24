@@ -74,6 +74,7 @@ module Librarian
           before do
             env.stub(:install_path) { install_path }
             action.stub(:check_preconditions)
+            action.stub(:destructive?) { true }
             action.stub_chain(:lock, :manifests) { manifests }
           end
 
