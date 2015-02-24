@@ -12,6 +12,12 @@ module Librarian
       self.environment = environment
     end
 
+    def warn(string = nil, &block)
+      return unless ui
+
+      ui.warn(string || yield)
+    end
+
     def info(string = nil, &block)
       return unless ui
 
