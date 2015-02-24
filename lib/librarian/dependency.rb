@@ -7,7 +7,7 @@ module Librarian
       def initialize(*args)
         args = initialize_normalize_args(args)
 
-        self.backing = Gem::Requirement.create(*args)
+        self.backing = Gem::Requirement.create(args)
       end
 
       def to_gem_requirement
@@ -90,8 +90,27 @@ module Librarian
       def initialize_normalize_args(args)
         args.map do |arg|
           arg = arg.backing if self.class === arg
-          arg
-        end
+          case arg
+          when Array
+            arg.map { |item| parse(item) }
+          when String
+            parse(arg)
+          else
+            # Gem::Requirement, convert to string (ie. =1.0) so we can concat later
+            # Gem::Requirements can not be concatenated
+            arg.requirements.map{|x,y| "#{x}#{y}"}
+          end
+        end.flatten
+      end
+
+      # build an array if the argument is a string defining a range
+      # or a ~> 1.0 type version if string is 1.x
+      def parse(arg)
+        match = range_requirement(arg)
+        return [match[1], match[2]] if match
+        match = pessimistic_requirement(arg)
+        return "~> #{match[1]}.0" if match
+        arg
       end
 
       def compatible?(a, b)
@@ -99,6 +118,16 @@ module Librarian
         r = COMPATS_TABLE[[a.first, b.first]]
         r = r.call(a.last, b.last) if r.respond_to?(:call)
         r
+      end
+
+      # A version range: >=1.0 <2.0
+      def range_requirement(arg)
+        arg.match(/(>=? ?\d+(?:\.\d+){0,2}) (<=? ?\d+(?:\.\d+){0,2})/)
+      end
+
+      # A string with .x: 1.x, 2.1.x
+      def pessimistic_requirement(arg)
+        arg.match(/(\d+(?:\.\d+)?)\.x/)
       end
     end
 
