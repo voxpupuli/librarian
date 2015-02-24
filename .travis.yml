@@ -1,10 +1,10 @@
 language: ruby
-script: rspec spec -b
+script: bundle exec rake
 rvm:
-  - 2.2.x
-  - 2.1.x
-  - 2.0.x
-  - 1.9.x
-  - 1.8.x
+  - 2.2
+  - 2.1
+  - 2.0
+  - 1.9
+  - 1.8
   - jruby-19mode
   - jruby-18mode
