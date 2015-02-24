@@ -1,4 +1,4 @@
-Copyright (c) 2011 ApplicationsOnline, LLC.
+Copyright (c) 2011 ApplicationsOnline, LLC. and Carlos Sanchez
 
 MIT License
 

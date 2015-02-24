@@ -3,13 +3,13 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
-  gem.name          = "librarian"
+  gem.name          = "librarianp"
   gem.version       = File.read(File.expand_path("../VERSION", __FILE__)).strip
-  gem.authors       = ["Jay Feldblum"]
-  gem.email         = ["y_feldblum@yahoo.com"]
+  gem.authors       = ["Jay Feldblum", "Carlos Sanchez"]
+  gem.email         = ["y_feldblum@yahoo.com", "carlos@apache.org"]
   gem.summary       = %q{A Framework for Bundlers.}
-  gem.description   = %q{A Framework for Bundlers.}
-  gem.homepage      = "https://github.com/applicationsonline/librarian"
+  gem.description   = %q{A Framework for Bundlers, used by librarian-puppet.}
+  gem.homepage      = "https://github.com/carlossg/librarian"
   gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($/)

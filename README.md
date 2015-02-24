@@ -1,4 +1,4 @@
-Librarian [![Build Status](https://secure.travis-ci.org/applicationsonline/librarian.png)](http://travis-ci.org/applicationsonline/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/applicationsonline/librarian)
+Librarian [![Build Status](https://secure.travis-ci.org/carlossg/librarian.png)](http://travis-ci.org/carlossg/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/carlossg/librarian)
 =========
 
 Librarian is a framework for writing bundlers, which are tools that resolve,
@@ -47,9 +47,9 @@ Please include a reproducible test case.
 License
 -------
 
-Written by Jay Feldblum.
+Written by Jay Feldblum and Carlos Sanchez.
 
-Copyright (c) 2011-2013 ApplicationsOnline, LLC.
+Copyright (c) 2011-2013 ApplicationsOnline, LLC. and Carlos Sanchez
 
 Released under the terms of the MIT License. For further information, please see
 the file `LICENSE.txt`.
