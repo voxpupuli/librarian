@@ -91,6 +91,8 @@ module Librarian
         args.map do |arg|
           arg = arg.backing if self.class === arg
           case arg
+          when nil
+            nil
           when Array
             arg.map { |item| parse(item) }
           when String

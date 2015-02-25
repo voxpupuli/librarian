@@ -9,6 +9,10 @@ describe Librarian::Dependency::Requirement do
       to eq "#<Librarian::Dependency::Requirement >= 3.2.1>" }
   end
 
+  it 'should handle nil versions' do
+    described_class.new(nil).to_gem_requirement.should eq(Gem::Requirement.new)
+  end
+
   it 'should handle .x versions' do
     described_class.new('1.x').to_gem_requirement.should eq(Gem::Requirement.new('~> 1.0'))
     described_class.new('1.0.x').to_gem_requirement.should eq(Gem::Requirement.new('~> 1.0.0'))
