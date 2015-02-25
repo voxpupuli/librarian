@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.3.0
+
+* Allow customizing default specfile and receiver downstream
+
+## 0.2.0
+
+* Remove highline gem not actually needed
+* Handle version ranges and 1.x type strings
+* Handle prerelease versions and semver
+* Add a logger warn method
+* Add a better error message if module doesn't exist while resolving dependencies
+
 ## 0.1.2
 
 * \#153. Mark the license in the gemspec.
