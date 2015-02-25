@@ -219,7 +219,31 @@ module Librarian
     end
 
     def fetch_dependencies!
-      source.fetch_dependencies(name, version, extra)
+      remove_duplicate_dependencies(name, source.fetch_dependencies(name, version, extra))
+    end
+
+    # merge dependencies with the same name into one
+    # with the source of the first one and merged requirements
+    def merge_dependencies(dependencies)
+      requirement = Dependency::Requirement.new(*dependencies.map{|d| d.requirement})
+      Dependency.new(dependencies.first.name, requirement, dependencies.first.source)
+    end
+
+    # Avoid duplicated dependencies with different sources or requirements
+    def remove_duplicate_dependencies(module_name, dependencies)
+      uniq = []
+      dependencies_by_name = dependencies.group_by{|d| d.name}
+      dependencies_by_name.map do |name, dependencies_same_name|
+        if dependencies_same_name.size > 1
+          environment.logger.warn { "Dependency '#{name}' duplicated for module #{module_name}, trying to merge: #{dependencies_same_name.map{|d| d.to_s}}" }
+          merged = merge_dependencies(dependencies_same_name)
+          environment.logger.warn { "Dependency '#{name}' merged as #{merged}" }
+          uniq << merged
+        else
+          uniq << dependencies_same_name.first
+        end
+      end
+      uniq
     end
 
     def _normalize_version(version)
