@@ -171,6 +171,12 @@ module Librarian
       self.source       == other.source
     end
 
+    alias :eql? :==
+
+    def hash
+      self.to_s.hash
+    end
+
     def consistent_with?(other)
       name != other.name || requirement.consistent_with?(other.requirement)
     end
