@@ -1,6 +1,8 @@
 Librarian [![Build Status](https://secure.travis-ci.org/carlossg/librarian.png)](http://travis-ci.org/carlossg/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/carlossg/librarian)
 =========
 
+This is a forked version published as `librarianp` with improvements in order to support `librarian-puppet`.
+
 Librarian is a framework for writing bundlers, which are tools that resolve,
 fetch, install, and isolate a project's dependencies, in Ruby.
 
