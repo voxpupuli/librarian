@@ -108,6 +108,7 @@ module Librarian
       # build an array if the argument is a string defining a range
       # or a ~> 1.0 type version if string is 1.x
       def parse(arg)
+        return nil if arg.nil?
         match = range_requirement(arg)
         return [match[1], match[2]] if match
         match = pessimistic_requirement(arg)

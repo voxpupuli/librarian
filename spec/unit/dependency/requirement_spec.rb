@@ -13,6 +13,10 @@ describe Librarian::Dependency::Requirement do
     described_class.new(nil).to_gem_requirement.should eq(Gem::Requirement.new)
   end
 
+  it 'should handle nil versions in arrays' do
+    described_class.new([nil]).to_gem_requirement.should eq(Gem::Requirement.new)
+  end
+
   it 'should handle .x versions' do
     described_class.new('1.x').to_gem_requirement.should eq(Gem::Requirement.new('~> 1.0'))
     described_class.new('1.0.x').to_gem_requirement.should eq(Gem::Requirement.new('~> 1.0.0'))
