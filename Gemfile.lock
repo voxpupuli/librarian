@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     librarianp (0.1.2)
-      highline
       thor (~> 0.15)
 
 GEM
@@ -11,7 +10,6 @@ GEM
     diff-lcs (1.2.5)
     fakefs (0.4.2)
     ffi2-generators (0.1.1)
-    highline (1.7.1)
     json (1.8.2)
     rake (10.4.2)
     rspec (2.99.0)
