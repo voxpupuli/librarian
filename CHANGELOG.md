@@ -3,6 +3,8 @@
 ## 0.4.0
 
 * Resolve iteratively instead of recursively
+* Fail if there are duplicated dependencies in spec file
+* Merge duplicated dependencies and warn the user
 
 ## 0.3.0
 
