@@ -47,27 +47,31 @@ module Librarian
         manifests = index_by(manifests, &:name) if manifests.kind_of?(Array)
         queue = spec.dependencies + sourced_dependencies_for_manifests(manifests)
         state = State.new(manifests.dup, [], queue)
-        recursive_resolve(state)
+        do_resolve(state)
       end
 
     private
 
-      def recursive_resolve(state)
-        shift_resolved_enqueued_dependencies(state) or return
-        state.queue.empty? and return state.manifests
+      def do_resolve(state)
+        stack = [state]
+        while !stack.empty? do
+          state = stack.pop
+          shift_resolved_enqueued_dependencies(state) or return
+          state.queue.empty? and return state.manifests
 
-        state.dependencies << state.queue.shift
-        dependency = state.dependencies.last
+          state.dependencies << state.queue.shift
+          dependency = state.dependencies.last
 
-        resolving_dependency_map_find_manifests(dependency) do |manifest|
-          check_manifest(state, manifest) or next
-          check_manifest_for_cycles(state, manifest) or next unless cyclic
+          resolving_dependency_map_find_manifests(dependency) do |manifest|
+            check_manifest(state, manifest) or next
+            check_manifest_for_cycles(state, manifest) or next unless cyclic
 
-          m = state.manifests.merge(dependency.name => manifest)
-          a = sourced_dependencies_for_manifest(manifest)
-          s = State.new(m, state.dependencies.dup, state.queue + a)
+            m = state.manifests.merge(dependency.name => manifest)
+            a = sourced_dependencies_for_manifest(manifest)
+            s = State.new(m, state.dependencies.dup, state.queue + a)
 
-          recursive_resolve(s)
+            stack.push(s)
+          end
         end
       end
 

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.0
+
+* Resolve iteratively instead of recursively
+
 ## 0.3.0
 
 * Allow customizing default specfile and receiver downstream
