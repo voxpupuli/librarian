@@ -123,6 +123,16 @@ module Librarian
           it { should be == [?a, ?b, ?c, ?d] }
         end
 
+        # Dependencies are sorted alphabetically. Should they?
+        context "should be deterministic" do
+          let(:graph) { { ?a => [], ?b => [?c], ?c => [] } }
+          it { should be == [?a, ?c, ?b] }
+        end
+
+        context "should be deterministic" do
+          let(:graph) { { ?c => [], ?b => [?a], ?a => [] } }
+          it { should be == [?a, ?b, ?c] }
+        end
       end
 
     end
