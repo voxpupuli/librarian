@@ -23,6 +23,11 @@ module Librarian
           manifests = changes.analyze
         end
 
+        dupes = spec.dependencies.group_by{ |e| e.name }.select { |k, v| v.size > 1 }
+        unless dupes.empty?
+          raise Error, "Duplicated dependencies: #{dupes.values.flatten.map {|d| {d.name => d.source.to_s} }}"
+        end
+
         resolution = resolver.resolve(spec, manifests)
         persist_resolution(resolution)
       end
