@@ -143,6 +143,10 @@ module Librarian
 
         expect(set.to_a).to match_array( [] )
       end
+
+      it "should fail if index does not contain manifest" do
+        expect { set.deep_strip!(["a", "z"]) }.to raise_error(Librarian::Error, /^Unable to find module z/)
+      end
     end
 
     describe "#deep_keep!" do

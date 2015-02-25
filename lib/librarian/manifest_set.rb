@@ -137,7 +137,7 @@ module Librarian
         next if deps.include?(name)
 
         deps << name
-        raise(Error, "Unable to find module #{name}. Your #{environment.default_specfile_name} may be out of sync with the lock, try running 'install' first") if index[name].nil?
+        raise(Error, "Unable to find module #{name}. The dependency descriptor may be out of sync with the lock, try running 'install' first") if index[name].nil?
         names.concat index[name].dependencies.map(&:name)
       end
       deps.to_a
