@@ -82,10 +82,10 @@ module Librarian
     def run(specfile = nil, sources = [])
       specfile, sources = nil, specfile if specfile.kind_of?(Array) && sources.empty?
 
-        if specfile.kind_of?(Pathname) and !File.exists?(specfile)
-          specfile = default_specfile
-          debug { "Specfile not found, using defaults: #{specfile}" } unless specfile.nil?
-        end
+      if specfile.kind_of?(Pathname) and !File.exists?(specfile)
+        specfile = default_specfile
+        debug { "Specfile not found, using defaults: #{specfile}" } unless specfile.nil?
+      end
 
       Target.new(self).tap do |target|
         target.precache_sources(sources)
