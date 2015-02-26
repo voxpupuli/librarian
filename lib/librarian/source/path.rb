@@ -10,13 +10,12 @@ module Librarian
       lock_name 'PATH'
       spec_options []
 
-      attr_accessor :environment
-      private :environment=
-      attr_reader :path
+      attr_accessor :environment, :path
+      private :environment=, :path=
 
       def initialize(environment, path, options)
         self.environment = environment
-        @path = path
+        self.path = path
       end
 
       def to_s
