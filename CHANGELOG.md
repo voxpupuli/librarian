@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.0
+
+* Allow defining exclusions in spec file
+
 ## 0.4.0
 
 * Resolve iteratively instead of recursively

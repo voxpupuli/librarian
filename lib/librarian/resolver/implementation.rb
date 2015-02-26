@@ -64,6 +64,9 @@ module Librarian
 
           resolving_dependency_map_find_manifests(dependency) do |manifest|
             check_manifest(state, manifest) or next
+            manifest.exclude_dependencies!(spec.exclusions).each do |d|
+              debug { "Excluding dependency #{d.name} from #{manifest.name}" }
+            end
             check_manifest_for_cycles(state, manifest) or next unless cyclic
 
             m = state.manifests.merge(dependency.name => manifest)

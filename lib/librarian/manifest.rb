@@ -58,6 +58,13 @@ module Librarian
       end
     end
 
+    # Remove dependencies excluded, and return them
+    def exclude_dependencies!(exclusions)
+      included, excluded = dependencies.partition { |d| !exclusions.include? d.name }
+      self.dependencies = included
+      excluded
+    end
+
     def satisfies?(dependency)
       dependency.requirement.satisfied_by?(version)
     end

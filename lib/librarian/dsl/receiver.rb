@@ -10,6 +10,9 @@ module Librarian
           define_method(target.dependency_name) do |*args, &block|
             target.dependency(*args, &block)
           end
+          define_method(:exclusion) do |*args, &block|
+            target.exclusion(*args, &block)
+          end
           define_method(:source) do |*args, &block|
             target.source(*args, &block)
           end

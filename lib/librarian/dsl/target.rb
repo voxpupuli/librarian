@@ -42,6 +42,7 @@ module Librarian
         @source_cache = {}
         @source_shortcuts = {}
         @dependencies = []
+        @exclusions = []
         SCOPABLES.each do |scopable|
           instance_variable_set(:"@#{scopable}", [])
         end
@@ -51,7 +52,7 @@ module Librarian
       end
 
       def to_spec
-        Spec.new(@sources, @dependencies)
+        Spec.new(@sources, @dependencies, @exclusions)
       end
 
       def dependency(name, *args)
@@ -59,6 +60,10 @@ module Librarian
         source = source_from_options(options) || @source
         dep = dependency_type.new(name, args, source)
         @dependencies << dep
+      end
+
+      def exclusion(name)
+        @exclusions << name
       end
 
       def source(name, param = nil, options = nil, &block)
