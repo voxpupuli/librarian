@@ -101,7 +101,7 @@ module Librarian
     # with the source of the first one and merged requirements
     def merge_dependencies(dependencies)
       requirement = Dependency::Requirement.new(*dependencies.map{|d| d.requirement})
-      Dependency.new(dependencies.first.name, requirement, dependencies.first.source)
+      dependencies.first.class.new(dependencies.first.name, requirement, dependencies.first.source)
     end
 
     # Avoid duplicated dependencies with different sources or requirements

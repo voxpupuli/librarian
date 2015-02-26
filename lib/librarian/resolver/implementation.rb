@@ -142,7 +142,7 @@ module Librarian
         return dependency if dependency.source
 
         source = dependency_source_map[dependency.name] || default_source
-        Dependency.new(dependency.name, dependency.requirement, source)
+        dependency.class.new(dependency.name, dependency.requirement, source)
       end
 
       def sourced_dependencies_for_manifest(manifest)

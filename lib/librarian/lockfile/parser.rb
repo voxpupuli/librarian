@@ -66,7 +66,7 @@ module Librarian
         while lines.first =~ /^ {2}([\w-]+)(?: \((.*)\))?$/
           lines.shift
           name, requirement = $1, $2.split(/,\s*/)
-          dependencies << Dependency.new(name, requirement, manifests_index[name].source)
+          dependencies << environment.dsl_class.dependency_type.new(name, requirement, manifests_index[name].source)
         end
         dependencies
       end
@@ -81,7 +81,7 @@ module Librarian
               source,
               manifest_name,
               manifest_ast[:version],
-              manifest_ast[:dependencies].map{|k, v| Dependency.new(k, v, nil)}
+              manifest_ast[:dependencies].map{|k, v| environment.dsl_class.dependency_type.new(k, v, nil)}
             )
           end
         end
@@ -92,7 +92,7 @@ module Librarian
         manifests = compile_placeholder_manifests(sources_ast)
         manifests = manifests.map do |name, manifest|
           dependencies = manifest.dependencies.map do |d|
-            Dependency.new(d.name, d.requirement, manifests[d.name].source)
+            environment.dsl_class.dependency_type.new(d.name, d.requirement, manifests[d.name].source)
           end
           real = Manifest.new(manifest.source, manifest.name)
           real.version = manifest.version
