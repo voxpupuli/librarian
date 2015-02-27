@@ -3,6 +3,7 @@
 ## 0.5.0
 
 * Allow defining exclusions in spec file
+* Allow forward slash in lock file
 
 ## 0.4.0
 
