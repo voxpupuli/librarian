@@ -107,7 +107,7 @@ module Librarian
             reference = "#{remote}/#{reference}"
           end
 
-          command = %W(rev-list #{reference} -1)
+          command = %W(rev-parse #{reference}^{commit} --quiet)
           run!(command, :chdir => true).strip
         end
 
