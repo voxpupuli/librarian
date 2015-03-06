@@ -12,7 +12,7 @@ module Librarian
     end
 
     def read(precache_sources = [])
-      environment.dsl(path, precache_sources)
+      @spec ||= environment.dsl(path, precache_sources)
     end
 
   end

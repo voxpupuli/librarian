@@ -23,14 +23,14 @@ module Librarian
           manifests = changes.analyze
         end
 
-        dupes = spec.dependencies.group_by{ |e| e.name }.select { |k, v| v.size > 1 }
-        dupes = Hash[dupes] if dupes.is_a? Array # Ruby 1.8 support
-        unless dupes.empty?
-          raise Error, "Duplicated dependencies: #{dupes.values.flatten.map {|d| {d.name => d.source.to_s} }}"
+        spec.dependencies, duplicated = Dependency.remove_duplicate_dependencies(spec.dependencies)
+        duplicated.each do |name, dependencies_same_name|
+          environment.logger.info { "Dependency '#{name}' duplicated for module #{name}, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
         end
 
         resolution = resolver.resolve(spec, manifests)
         persist_resolution(resolution)
+        resolution
       end
 
     private

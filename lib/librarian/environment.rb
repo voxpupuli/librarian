@@ -71,7 +71,7 @@ module Librarian
     end
 
     def specfile
-      Specfile.new(self, specfile_path)
+      @specfile ||= Specfile.new(self, specfile_path)
     end
 
     def adapter_module

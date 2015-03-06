@@ -185,6 +185,32 @@ module Librarian
       !consistent_with?(other)
     end
 
+    class << self
+      # merge dependencies with the same name into one
+      # with the source of the first one and merged requirements
+      def merge_dependencies(dependencies)
+        requirement = Dependency::Requirement.new(*dependencies.map{|d| d.requirement})
+        dependencies.last.class.new(dependencies.last.name, requirement, dependencies.last.source)
+      end
+
+      # Avoid duplicated dependencies with different sources or requirements
+      # Return [merged dependnecies, duplicates as a map by name]
+      def remove_duplicate_dependencies(dependencies)
+        uniq = []
+        duplicated = {}
+        dependencies_by_name = dependencies.group_by{|d| d.name}
+        dependencies_by_name.map do |name, dependencies_same_name|
+          if dependencies_same_name.size > 1
+            duplicated[name] = dependencies_same_name
+            uniq << merge_dependencies(dependencies_same_name)
+          else
+            uniq << dependencies_same_name.first
+          end
+        end
+          [uniq, duplicated]
+      end
+    end
+
   private
 
     def assert_name_valid!(name)
