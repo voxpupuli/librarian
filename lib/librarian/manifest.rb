@@ -98,6 +98,7 @@ module Librarian
       duplicated.each do |name, dependencies_same_name|
         environment.logger.info { "Dependency '#{name}' duplicated for module #{module_name}, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
       end
+      dependencies
     end
 
     def _normalize_version(version)
