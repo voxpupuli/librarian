@@ -96,7 +96,7 @@ module Librarian
     def fetch_dependencies!
       dependencies, duplicated = Dependency.remove_duplicate_dependencies(source.fetch_dependencies(name, version, extra))
       duplicated.each do |name, dependencies_same_name|
-        environment.logger.info { "Dependency '#{name}' duplicated for module #{module_name}, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
+        environment.logger.info { "Dependency '#{name}' duplicated for module #{self.name}, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
       end
       dependencies
     end

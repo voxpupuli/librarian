@@ -25,7 +25,7 @@ module Librarian
 
         spec.dependencies, duplicated = Dependency.remove_duplicate_dependencies(spec.dependencies)
         duplicated.each do |name, dependencies_same_name|
-          environment.logger.info { "Dependency '#{name}' duplicated for module #{name}, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
+          environment.logger.info { "Dependency '#{name}' duplicated for module, merging: #{dependencies_same_name.map{|d| d.to_s}}" }
         end
 
         resolution = resolver.resolve(spec, manifests)
