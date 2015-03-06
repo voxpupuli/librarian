@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    librarianp (0.6.0)
+    librarianp (0.6.1)
       thor (~> 0.15)
 
 GEM
