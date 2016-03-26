@@ -14,7 +14,7 @@ module Librarian
       include Local
 
       lock_name 'GIT'
-      spec_options [:ref, :path]
+      spec_options [:ref, :branch, :tag, :commit, :path]
 
       DEFAULTS = {
         :ref => 'master'
@@ -23,13 +23,17 @@ module Librarian
       attr_accessor :environment
       private :environment=
 
-      attr_accessor :uri, :ref, :sha, :path
-      private :uri=, :ref=, :sha=, :path=
+      attr_accessor :uri, :ref, :branch, :tag, :commit, :sha, :path
+      private :uri=, :ref=, :branch=, :tag=, :commit=, :sha=, :path=
 
       def initialize(environment, uri, options)
+        validate_options(uri, options)
+
         self.environment = environment
         self.uri = uri
-        self.ref = options[:ref] || DEFAULTS[:ref]
+        self.ref = options[:ref] || options[:branch] ||
+                   options[:tag] || options[:commit] ||
+                   DEFAULTS[:ref]
         self.sha = options[:sha]
         self.path = options[:path]
 
@@ -173,6 +177,13 @@ module Librarian
         @runtime_cache ||= environment.runtime_cache.keyspace(self.class.name)
       end
 
+      def validate_options(uri, options)
+        found = 0; [:ref, :branch, :tag, :commit].each do |opt|
+          found += 1 if options.has_key?(opt)
+          found > 1 and raise Error,
+            "at #{uri}, use only one of ref, branch, tag, or commit"
+        end
+      end
     end
   end
 end
