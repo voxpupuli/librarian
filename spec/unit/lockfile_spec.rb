@@ -29,7 +29,7 @@ module Librarian
         subject { resolution }
 
         it { should be_correct }
-        it { should have(1).manifests }
+        it { expect(subject.manifests.size).to eq 1 }
       end
     end
 
