@@ -45,7 +45,7 @@ module Librarian
       end
 
       it "should give a list of one dependency" do
-        expect(resolution).to have(1).dependencies
+        expect(resolution.dependencies.size).to eq 1
       end
 
       it "should give a dependency with the expected name" do
@@ -69,7 +69,7 @@ module Librarian
       end
 
       it "should give a list of one manifest" do
-        expect(resolution).to have(1).manifests
+        expect(resolution.manifests.size).to eq 1
       end
 
       it "should give a manifest with the expected name" do
@@ -125,7 +125,7 @@ module Librarian
       end
 
       it "should give a list of one dependency" do
-        expect(resolution).to have(1).dependencies
+        expect(resolution.dependencies.size).to eq 1
       end
 
       it "should have the expected dependency" do
@@ -135,7 +135,7 @@ module Librarian
       end
 
       it "should give a list of all the manifests" do
-        expect(resolution).to have(2).manifests
+        expect(resolution.manifests.size).to eq 2
       end
 
       it "should include all the expected manifests" do

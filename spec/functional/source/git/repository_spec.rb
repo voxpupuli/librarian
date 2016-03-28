@@ -108,7 +108,7 @@ describe Librarian::Source::Git::Repository do
     end
 
     it "should have a single remote for it" do
-      expect(subject).to have(1).remote_names
+      expect(subject.remote_names.size).to eq 1
     end
 
     it "should have a remote with the expected name" do

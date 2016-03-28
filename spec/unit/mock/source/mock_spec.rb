@@ -12,7 +12,7 @@ module Librarian
           let(:source) { described_class.new(env, "source-a", {}) }
           subject { source }
 
-          its(:environment) { should_not be_nil }
+          it { expect(subject.environment).to_not be_nil }
 
         end
 

@@ -36,6 +36,7 @@ module Librarian
 
           it "should merge duplicated dependencies" do
             Dependency.any_instance.stub(:manifests => [manifest])
+            Librarian::Logger.any_instance.stub(:info)
             action.stub(:persist_resolution)
             resolution = action.run
             expect(resolution.dependencies).to eq([dependency2])

@@ -94,7 +94,7 @@ module Librarian
       end
 
       it "should have the expected number of sources" do
-        expect(spec).to have(2).sources
+        expect(spec.sources.size).to eq 2
       end
 
       let(:resolution) { resolver.resolve(spec) }
@@ -288,7 +288,7 @@ module Librarian
       it "loads the specfile with the __FILE__" do
         write! specfile_path, "src __FILE__"
         spec = env.dsl(specfile_path)
-        expect(spec.sources).to have(1).item
+        expect(spec.sources.size).to eq 1
         source = spec.sources.first
         expect(source.name).to eq specfile_path.to_s
       end
