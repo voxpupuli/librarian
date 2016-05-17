@@ -17,11 +17,17 @@ module Librarian
 
         context "with an unknown option" do
           it "should raise" do
-            expect { described_class.from_spec_args(env, "some://git/repo.git", :branch => "megapatches") }.
-              to raise_error Error, "unrecognized options: branch"
+            expect { described_class.from_spec_args(env, "some://git/repo.git", :I_am_unknown => "megapatches") }.
+              to raise_error Error, "unrecognized options: I_am_unknown"
           end
         end
 
+        context "with invalid options" do
+          it "should raise" do
+            expect { described_class.from_spec_args(env, "some://git/repo.git", {:ref => "megapatches", :branch => "megapatches"}) }.
+              to raise_error Error, "at some://git/repo.git, use only one of ref, branch, tag, or commit"
+          end
+        end
       end
 
     end
