@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.6.0
+
+* Add support for r10k Puppetfile's opts
+* Fix deprecation warnings
+* Fix compatibility with git 2.14.0
+
 ## 0.5.0
 
 * Allow defining exclusions in spec file
