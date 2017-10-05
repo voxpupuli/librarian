@@ -1,10 +1,27 @@
 # Change Log
 
-## 0.6.0
+## 0.6.4
 
 * Add support for r10k Puppetfile's opts
 * Fix deprecation warnings
 * Fix compatibility with git 2.14.0
+
+## 0.6.3
+
+* Prevent losing specfile path when metadata doesn't exist
+
+## 0.6.2
+
+* Fix bad variable name
+
+## 0.6.1
+
+* Fix dependencies not being fetched
+
+## 0.6.0
+
+* Merge duplicated dependencies in spec
+* Always fetch the commit SHA from rev-parse
 
 ## 0.5.0
 
