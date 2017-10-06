@@ -1,4 +1,4 @@
-Librarian [![Build Status](https://secure.travis-ci.org/carlossg/librarian.png)](http://travis-ci.org/carlossg/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/carlossg/librarian)
+Librarian [![Build Status](https://secure.travis-ci.org/voxpupuli/librarian.png)](https://travis-ci.org/voxpupuli/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/carlossg/librarian)
 =========
 
 This is a forked version published as `librarianp` with improvements in order to support `librarian-puppet`.
@@ -27,7 +27,7 @@ Ensure the gem dependencies are installed:
 Run the tests with the default rake task:
 
     $ [bundle exec] rake
-    
+
 or directly with the rspec command:
 
     $ [bundle exec] rspec spec
