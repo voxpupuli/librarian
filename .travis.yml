@@ -10,5 +10,6 @@ deploy:
   provider: rubygems
   api_key:
     secure: "HkdoYaLek2mCT+e7pW0pHMLiIuikUMihfqzspltzmN673HBvMCMZqk4sIm4b3Zi+RMtNTb4dnMxxhehKyyzF88UIRHqV9OUPT3LQLE/BgHThxLD1+CSbVS1SZKY7UfTIcqW3/otORBCI5YAXiycEnRFIe2R/S3n0c/gD9dBcobg="
+  gem: librarianp
   on:
     tags: true
