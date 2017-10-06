@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["y_feldblum@yahoo.com", "carlos@apache.org"]
   gem.summary       = %q{A Framework for Bundlers.}
   gem.description   = %q{A Framework for Bundlers, used by librarian-puppet.}
-  gem.homepage      = "https://github.com/carlossg/librarian"
+  gem.homepage      = "https://github.com/voxpupuli/librarian"
   gem.license       = "MIT"
 
   gem.files         = `git ls-files`.split($/)
