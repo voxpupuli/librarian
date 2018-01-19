@@ -125,7 +125,7 @@ module Librarian
 
       # A version range: >=1.0 <2.0
       def range_requirement(arg)
-        arg.match(/(>=? ?\d+(?:\.\d+){0,2}) (<=? ?\d+(?:\.\d+){0,2})/)
+        arg.match(/(>=? ?\d+(?:\.\d+){0,2})\s*(<=? ?\d+(?:\.\d+){0,2})/)
       end
 
       # A string with .x: 1.x, 2.1.x
