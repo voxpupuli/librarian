@@ -24,6 +24,7 @@ describe Librarian::Dependency::Requirement do
 
   it 'should handle version ranges' do
     described_class.new('>=1.1.0 <2.0.0').to_gem_requirement.should eq(Gem::Requirement.new(['>=1.1.0', '<2.0.0']))
+    described_class.new('>=1.1.0  <2.0.0').to_gem_requirement.should eq(Gem::Requirement.new(['>=1.1.0', '<2.0.0']))
   end
 
   it 'should print to_s' do
