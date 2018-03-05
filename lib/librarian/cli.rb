@@ -192,7 +192,7 @@ module Librarian
       debug { "Git: #{Source::Git::Repository.bin}" }
       debug { "Git Version: #{Source::Git::Repository.git_version}" }
       debug { "Git Environment Variables:" }
-      git_env = ENV.to_a.select{|(k, v)| k =~ /\AGIT/}.sort_by{|(k, v)| k}
+      git_env = ENV.to_a.select{|(k, v)| k =~ /\AGIT_/}.sort_by{|(k, v)| k}
       if git_env.empty?
         debug { "  (empty)" }
       else
