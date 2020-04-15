@@ -58,7 +58,7 @@ module Librarian
         dependency = resolution.dependencies.first
 
         # Note: it must be this order because this order is lexicographically sorted.
-        expect(dependency.requirement.to_s).to eq "!= 1.2.6, ~> 1.1"
+        expect(dependency.requirement.to_s).to eq "~> 1.1, != 1.2.6"
       end
 
       it "should give a dependency wth the expected source" do
