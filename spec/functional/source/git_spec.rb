@@ -54,7 +54,7 @@ describe Librarian::Source::Git do
         git! %W[config user.email simba@savannah-pride.gov]
         FileUtils.touch "butter.txt"
         git! %W[add butter.txt]
-        git! %W[commit -m #{"Initial Commit"}]
+        git! %W[commit -m #{"Initial Commit"} --no-gpg-sign]
       end
     end
 
@@ -150,7 +150,7 @@ describe Librarian::Source::Git do
         Dir.chdir(git_source_path) do
           FileUtils.touch "jam.txt"
           git! %w[add jam.txt]
-          git! %W[commit -m #{"Some Jam"}]
+          git! %W[commit -m #{"Some Jam"} --no-gpg-sign]
         end
       end
 
