@@ -26,7 +26,7 @@ module Librarian
         with_env "HOME" => "/path/to/home"
 
         it "finds the home" do
-          env.stub(:adapter_name).and_return("cat")
+          allow(env).to receive(:adapter_name).and_return("cat")
           expect(env.config_db.underlying_home.to_s).to eq "/path/to/home"
         end
       end
@@ -36,7 +36,7 @@ module Librarian
         with_env "HOME" => nil
 
         it "finds the home" do
-          env.stub(:adapter_name).and_return("cat")
+          allow(env).to receive(:adapter_name).and_return("cat")
           expect(env.config_db.underlying_home.to_s).to eq real_home
         end
       end

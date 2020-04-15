@@ -15,7 +15,7 @@ module Librarian
     let(:source2) { Librarian::Mock::Source::Mock.new(env, "source2", {}) }
 
     before do
-      env.stub(:specfile => double(:read => spec))
+      allow(env).to receive_messages(:specfile => double(:read => spec))
     end
 
     describe "#run" do
@@ -35,9 +35,9 @@ module Librarian
           end
 
           it "should merge duplicated dependencies" do
-            Dependency.any_instance.stub(:manifests => [manifest])
-            Librarian::Logger.any_instance.stub(:info)
-            action.stub(:persist_resolution)
+            allow_any_instance_of(Dependency).to receive_messages(:manifests => [manifest])
+            allow_any_instance_of(Librarian::Logger).to receive(:info)
+            allow(action).to receive(:persist_resolution)
             resolution = action.run
             expect(resolution.dependencies).to eq([dependency2])
           end
