@@ -5,7 +5,7 @@ module Librarian
 
     describe AdjacencyListDirectedGraph do
 
-      describe :cyclic? do
+      describe 'cyclic?' do
         subject(:result) { described_class.cyclic?(graph) }
 
         context "with an empty graph" do
@@ -45,7 +45,7 @@ module Librarian
 
       end
 
-      describe :feedback_arc_set do
+      describe 'feedback_arc_set' do
         subject(:result) { described_class.feedback_arc_set(graph) }
 
         context "with an empty graph" do
@@ -85,7 +85,7 @@ module Librarian
 
       end
 
-      describe :tsort_cyclic do
+      describe 'tsort_cyclic' do
         subject(:result) { described_class.tsort_cyclic(graph) }
 
         context "with an empty graph" do
