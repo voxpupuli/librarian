@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "librarianp"
-  gem.version       = File.read(File.expand_path("../VERSION", __FILE__)).strip
+  gem.version       = File.read(File.expand_path('VERSION', __dir__)).strip
   gem.authors       = ["Jay Feldblum", "Carlos Sanchez"]
   gem.email         = ["y_feldblum@yahoo.com", "carlos@apache.org"]
   gem.summary       = %q{A Framework for Bundlers.}

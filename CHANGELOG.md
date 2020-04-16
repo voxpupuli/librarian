@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.0.0
+
+* Require Ruby 2.4+
+* Update dependencies to the latest versions
+* Be specific about exposing git environment variables
+* Allow more spaces in version range
+
 ## 0.6.4
 
 * Add support for r10k Puppetfile's opts
