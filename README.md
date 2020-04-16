@@ -1,4 +1,4 @@
-Librarian [![Build Status](https://secure.travis-ci.org/voxpupuli/librarian.png)](https://travis-ci.org/voxpupuli/librarian) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/carlossg/librarian)
+Librarian [![Build Status](https://secure.travis-ci.org/voxpupuli/librarian.png)](https://travis-ci.org/voxpupuli/librarian)
 =========
 
 This is a forked version published as `librarianp` with improvements in order to support `librarian-puppet`.

@@ -15,7 +15,7 @@ module Librarian
 
           context "when the specfile is missing" do
             before do
-              env.stub_chain(:specfile_path, :exist?) { false }
+              allow(env).to receive_message_chain(:specfile_path, :exist?) { false }
             end
 
             it "should raise an error explaining that the specfile is missing" do
@@ -25,8 +25,8 @@ module Librarian
 
           context "when the specfile is present but the lockfile is missing" do
             before do
-              env.stub_chain(:specfile_path, :exist?) { true }
-              env.stub_chain(:lockfile_path, :exist?) { false }
+              allow(env).to receive_message_chain(:specfile_path, :exist?) { true }
+              allow(env).to receive_message_chain(:lockfile_path, :exist?) { false }
             end
 
             it "should raise an error explaining that the lockfile is missing" do
@@ -36,9 +36,9 @@ module Librarian
 
           context "when the specfile and lockfile are present but inconsistent" do
             before do
-              env.stub_chain(:specfile_path, :exist?) { true }
-              env.stub_chain(:lockfile_path, :exist?) { true }
-              action.stub(:spec_consistent_with_lock?) { false }
+              allow(env).to receive_message_chain(:specfile_path, :exist?) { true }
+              allow(env).to receive_message_chain(:lockfile_path, :exist?) { true }
+              allow(action).to receive(:spec_consistent_with_lock?) { false }
             end
 
             it "should raise an error explaining the inconsistenty" do
@@ -48,10 +48,10 @@ module Librarian
 
           context "when the specfile and lockfile are present and consistent" do
             before do
-              env.stub_chain(:specfile_path, :exist?) { true }
-              env.stub_chain(:lockfile_path, :exist?) { true }
-              action.stub(:spec_consistent_with_lock?) { true }
-              action.stub(:perform_installation)
+              allow(env).to receive_message_chain(:specfile_path, :exist?) { true }
+              allow(env).to receive_message_chain(:lockfile_path, :exist?) { true }
+              allow(action).to receive(:spec_consistent_with_lock?) { true }
+              allow(action).to receive(:perform_installation)
             end
 
             it "should not raise an error" do
@@ -72,10 +72,10 @@ module Librarian
           let(:install_path) { double }
 
           before do
-            env.stub(:install_path) { install_path }
-            action.stub(:check_preconditions)
-            action.stub(:destructive?) { true }
-            action.stub_chain(:lock, :manifests) { manifests }
+            allow(env).to receive(:install_path) { install_path }
+            allow(action).to receive(:check_preconditions)
+            allow(action).to receive(:destructive?) { true }
+            allow(action).to receive_message_chain(:lock, :manifests) { manifests }
           end
 
           after do
@@ -85,7 +85,7 @@ module Librarian
           it "should sort and install the manifests" do
             expect(ManifestSet).to receive(:sort).with(manifests).exactly(:once).ordered { sorted_manifests }
 
-            install_path.stub(:exist?) { false }
+            allow(install_path).to receive(:exist?) { false }
             expect(install_path).to receive(:mkpath).exactly(:once).ordered
 
             sorted_manifests.each do |manifest|
@@ -94,10 +94,10 @@ module Librarian
           end
 
           it "should recreate the install path if it already exists" do
-            action.stub(:sorted_manifests) { sorted_manifests }
-            action.stub(:install_manifests)
+            allow(action).to receive(:sorted_manifests) { sorted_manifests }
+            allow(action).to receive(:install_manifests)
 
-            install_path.stub(:exist?) { true }
+            allow(install_path).to receive(:exist?) { true }
             expect(install_path).to receive(:rmtree)
             expect(install_path).to receive(:mkpath)
           end

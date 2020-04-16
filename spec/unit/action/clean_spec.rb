@@ -7,7 +7,7 @@ module Librarian
     let(:action) { described_class.new(env) }
 
     before do
-      action.stub(:debug)
+      allow(action).to receive(:debug)
     end
 
     describe "#run" do
@@ -21,12 +21,12 @@ module Librarian
         describe "clearing the cache path" do
 
           before do
-            action.stub(:clean_install_path)
+            allow(action).to receive(:clean_install_path)
           end
 
           context "when the cache path is missing" do
             before do
-              env.stub_chain(:cache_path, :exist?) { false }
+              allow(env).to receive_message_chain(:cache_path, :exist?).and_return(false)
             end
 
             it "should not try to clear the cache path" do
@@ -36,7 +36,7 @@ module Librarian
 
           context "when the cache path is present" do
             before do
-              env.stub_chain(:cache_path, :exist?) { true }
+              allow(env).to receive_message_chain(:cache_path, :exist?).and_return(true)
             end
 
             it "should try to clear the cache path" do
@@ -49,12 +49,12 @@ module Librarian
         describe "clearing the install path" do
 
           before do
-            action.stub(:clean_cache_path)
+            allow(action).to receive(:clean_cache_path)
           end
 
           context "when the install path is missing" do
             before do
-              env.stub_chain(:install_path, :exist?) { false }
+              allow(env).to receive_message_chain(:install_path, :exist?).and_return(false)
             end
 
             it "should not try to clear the install path" do
@@ -64,15 +64,15 @@ module Librarian
 
           context "when the install path is present" do
             before do
-              env.stub_chain(:install_path, :exist?) { true }
+              allow(env).to receive_message_chain(:install_path, :exist?).and_return(true)
             end
 
             it "should try to clear the install path" do
               children = [double, double, double]
               children.each do |child|
-                child.stub(:file?) { false }
+                allow(child).to receive(:file?).and_return(false)
               end
-              env.stub_chain(:install_path, :children) { children }
+              allow(env).to receive_message_chain(:install_path, :children).and_return(children)
 
               children.each do |child|
                 expect(child).to receive(:rmtree).exactly(:once)
@@ -81,7 +81,7 @@ module Librarian
 
             it "should only try to clear out directories from the install path, not files" do
               children = [double(:file? => false), double(:file? => true), double(:file? => true)]
-              env.stub_chain(:install_path, :children) { children }
+              allow(env).to receive_message_chain(:install_path, :children).and_return(children)
 
               children.select(&:file?).each do |child|
                 expect(child).to receive(:rmtree).never

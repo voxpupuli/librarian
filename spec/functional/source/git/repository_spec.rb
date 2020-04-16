@@ -40,20 +40,20 @@ describe Librarian::Source::Git::Repository do
       # master
       FileUtils.touch "butter.txt"
       git! %W[add butter.txt]
-      git! %W[commit -m #{"Initial Commit"}]
+      git! %W[commit -m #{"Initial Commit"} --no-gpg-sign]
 
       # branch
       git! %W[checkout -b #{branch} --quiet]
       FileUtils.touch "jam.txt"
       git! %W[add jam.txt]
-      git! %W[commit -m #{"Branch Commit"}]
+      git! %W[commit -m #{"Branch Commit"} --no-gpg-sign]
       git! %W[checkout master --quiet]
 
       # tag/atag
       git! %W[checkout -b deletable --quiet]
       FileUtils.touch "jelly.txt"
       git! %W[add jelly.txt]
-      git! %W[commit -m #{"Tag Commit"}]
+      git! %W[commit -m #{"Tag Commit"} --no-gpg-sign]
       git! %W[tag #{tag}]
       git! %W[tag -am #{"Annotated Tag Commit"} #{atag}]
       git! %W[checkout master --quiet]
