@@ -51,7 +51,7 @@ module Librarian
         def self.included(base)
           base.instance_exec do
             let(:project_path) do
-              project_path = Pathname.new(__FILE__).expand_path
+              project_path = Pathname.pwd.expand_path
               project_path = project_path.dirname until project_path.join("Rakefile").exist?
               project_path
             end
