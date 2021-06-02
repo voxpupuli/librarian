@@ -57,8 +57,7 @@ module Librarian
       it "should give a dependency with the expected requirement" do
         dependency = resolution.dependencies.first
 
-        # Note: it must be this order because this order is lexicographically sorted.
-        expect(dependency.requirement.to_s).to eq "~> 1.1, != 1.2.6"
+        expect(dependency.requirement).to eq Librarian::Dependency::Requirement.new(["~> 1.1", "!= 1.2.6"])
       end
 
       it "should give a dependency wth the expected source" do
