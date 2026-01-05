@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.0](https://github.com/voxpupuli/librarian/tree/v1.2.0) (2026-01-05)
+
+[Full Changelog](https://github.com/voxpupuli/librarian/compare/v1.1.2...v1.2.0)
+
+**Implemented enhancements:**
+
+- Add Ruby3.1-4.0 support [\#24](https://github.com/voxpupuli/librarian/pull/24) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- CI: Add dependabot configuration [\#25](https://github.com/voxpupuli/librarian/pull/25) ([bastelfreak](https://github.com/bastelfreak))
+- Add Vox Pupuli CI defaults [\#23](https://github.com/voxpupuli/librarian/pull/23) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v1.1.2](https://github.com/voxpupuli/librarian/tree/v1.1.2) (2022-08-02)
 
 [Full Changelog](https://github.com/voxpupuli/librarian/compare/v1.1.1...v1.1.2)
