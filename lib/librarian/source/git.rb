@@ -153,7 +153,9 @@ module Librarian
         remote = repository.default_remote
         runtime_cache.once ['repository-update', uri, remote, ref].to_s do
           repository.fetch! remote
-          repository.fetch! remote, :tags => true
+          repository.fetch! remote,
+                            :tags => true,
+                            :force => environment.config_db['allow-moving-tags']
         end
       end
 

@@ -60,6 +60,7 @@ module Librarian
           command = %W(fetch #{remote})
           command << '--quiet' unless environment.ui.debug?
           command << "--tags" if options[:tags]
+          command << "--force" if options[:force]
           run!(command, :chdir => true)
         end
 
